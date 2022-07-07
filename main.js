@@ -8,7 +8,6 @@ import { GetUselessFact } from "./useless_fact.js";
 import { GetYoMommaJoke } from "./yo_momma.js";
 import { GetAdvice } from "./advice.js";
 import { GetDadjoke } from "./dad_jokes.js";
-import "dotenv/config";
 import { rwClient } from "./twitter.js";
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 const MINUTE = 1000 * 60;
@@ -56,8 +55,9 @@ arrayOfSentences.push(advice);
 
   let randomTweet =
     arrayOfSentences[Math.floor(Math.random() * arrayOfSentences.length)];
-    //   await rwClient.v2.tweet(randomTweet);
-    console.log("Just tweeted: " + randomTweet);
+    let now = new Date();
+      await rwClient.v2.tweet(randomTweet + "\n-B \u{1F633}");
+    console.log(now.getHours()+ "h" + now.getMinutes() +": Just tweeted: " + randomTweet);
 
   //Send a tweet every 30 minutes
   await timer(30 * MINUTE);
