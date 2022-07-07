@@ -1,10 +1,13 @@
-const BlaguesAPI = require('blagues-api')
-require('dotenv').config()
-const blagues = new BlaguesAPI(process.env.API_BLAGUE_TOKEN);
+import { GetRandomBlague } from "./blagues.js";
+import "dotenv/config";
+import axios from "axios";
+import { rwClient } from './twitter.js';
 
-const GetRandomBlague = async () => {
-    await blagues.random().then((b) => {console.log(b);})
-}
-
-const blague = GetRandomBlague();
+let blague = await GetRandomBlague().then((b) => {
+  return b;
+});
 console.log(blague);
+// Instantiate with desired auth type (here's Bearer v2 auth)
+// const twitterClient = new TwitterApi(process.env.TWITTER_BEARER8TOKEN);
+
+await rwClient.v2.tweet(`${blague.joke}\n${blague.answer}`);
