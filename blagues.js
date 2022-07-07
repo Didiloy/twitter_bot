@@ -1,4 +1,3 @@
-// const BlaguesAPI = require('blagues-api')
 import BlaguesAPI from 'blagues-api';
 // require('dotenv').config()
 import 'dotenv/config'

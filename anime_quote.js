@@ -1,11 +1,10 @@
-import { resolve } from "path";
+import axios from 'axios';
 
 export function GetAnimeQuote() {
-  return new Promise((resole, rejects) => {
-    fetch("https://animechan.vercel.app/api/random")
-      .then((response) => response.json())
+  return new Promise(async(resolve, reject) => {
+    await axios("https://animechan.vercel.app/api/random")
       .then((quote) => {
-        resolve(quote.quote);
+        resolve(quote.data.quote);
       })
       .catch((err) => reject(err));
   });

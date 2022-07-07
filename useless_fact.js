@@ -1,11 +1,11 @@
+const BASE_LINK = "https://uselessfacts.jsph.pl/random.json"
 import axios from "axios";
-const CAT_FACT_LINK = "https://meowfacts.herokuapp.com/";
-export function GetCatFacts() {
+export function GetUselessFact() {
   return new Promise(async (resolve, reject) => {
     await axios
-      .get(CAT_FACT_LINK)
+      .get(BASE_LINK)
       .then((response) => {
-      resolve(response.data[0]);
+        resolve(response.data.text);
       })
       .catch((error) => reject(error));
   });

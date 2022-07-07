@@ -1,11 +1,11 @@
+const BASE_LINK = "https://yomomma-api.herokuapp.com/jokes";
 import axios from "axios";
-const CAT_FACT_LINK = "https://meowfacts.herokuapp.com/";
-export function GetCatFacts() {
+export function GetYoMommaJoke() {
   return new Promise(async (resolve, reject) => {
     await axios
-      .get(CAT_FACT_LINK)
+      .get(BASE_LINK)
       .then((response) => {
-      resolve(response.data[0]);
+        resolve(response.data.joke);
       })
       .catch((error) => reject(error));
   });

@@ -1,11 +1,11 @@
+const CHUCK_NORRIS_LINK = "https://api.chucknorris.io/jokes/random";
 import axios from "axios";
-const CAT_FACT_LINK = "https://meowfacts.herokuapp.com/";
-export function GetCatFacts() {
+export function GetChuckNorrisJokes() {
   return new Promise(async (resolve, reject) => {
     await axios
-      .get(CAT_FACT_LINK)
+      .get(CHUCK_NORRIS_LINK)
       .then((response) => {
-      resolve(response.data[0]);
+        resolve(response.data.value);
       })
       .catch((error) => reject(error));
   });
