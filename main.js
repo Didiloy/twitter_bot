@@ -7,6 +7,7 @@ import { GetExcuse } from "./excuses.js";
 import { GetUselessFact } from "./useless_fact.js";
 import { GetYoMommaJoke } from "./yo_momma.js";
 import { GetAdvice } from "./advice.js";
+import { GetDadjoke } from "./dad_jokes.js";
 import "dotenv/config";
 import { rwClient } from "./twitter.js";
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -49,9 +50,13 @@ arrayOfSentences.push(yo_momma); //
 let advice = await GetAdvice().then((a) => { return a; });
 arrayOfSentences.push(advice);
 
+//Unavailable for the moment
+// let dad_jokes = await GetDadjoke().then((d) => { return d; });
+// arrayOfSentences.push(dad_jokes);
+
   let randomTweet =
     arrayOfSentences[Math.floor(Math.random() * arrayOfSentences.length)];
-      await rwClient.v2.tweet(randomTweet);
+    //   await rwClient.v2.tweet(randomTweet);
     console.log("Just tweeted: " + randomTweet);
 
   //Send a tweet every 30 minutes
