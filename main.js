@@ -2,7 +2,7 @@ import { GetRandomBlague } from "./blagues.js";
 import { GetDogFacts } from "./dog_facts.js";
 import { GetCatFacts } from "./cat_facts.js";
 import { GetAnimeQuote } from "./anime_quote.js";
-import { GetChuckNorrisJokes} from "./chuck_norris.js";
+import { GetChuckNorrisJokes } from "./chuck_norris.js";
 import { GetExcuse } from "./excuses.js";
 import { GetUselessFact } from "./useless_fact.js";
 import { GetYoMommaJoke } from "./yo_momma.js";
@@ -14,51 +14,69 @@ const MINUTE = 1000 * 60;
 let arrayOfSentences = [];
 
 while (true) {
-  let blague = await GetRandomBlague().then((b) => {
-    return b;
-  });
-  arrayOfSentences.push(`${blague.joke}\n${blague.answer}`);
+  try {
+    let blague = await GetRandomBlague().then((b) => {
+      return b;
+    });
+    arrayOfSentences.push(`${blague.joke}\n${blague.answer}`);
 
-  let dogFact = await GetDogFacts().then((c) => {
-    return c;
-  });
-  arrayOfSentences.push(dogFact);
+    let dogFact = await GetDogFacts().then((c) => {
+      return c;
+    });
+    arrayOfSentences.push(dogFact);
 
-  let catFact = await GetCatFacts().then((c) => {
-    return c;
-  });
-  arrayOfSentences.push(catFact);
+    let catFact = await GetCatFacts().then((c) => {
+      return c;
+    });
+    arrayOfSentences.push(catFact);
 
-  let animeQuote = await GetAnimeQuote().then((c) => {
-    return c;
-  });
-  arrayOfSentences.push(animeQuote);
+    let animeQuote = await GetAnimeQuote().then((c) => {
+      return c;
+    });
+    arrayOfSentences.push(animeQuote);
 
-let chuck_norris = await GetChuckNorrisJokes().then((c) => { return c; });
-arrayOfSentences.push(chuck_norris);
+    let chuck_norris = await GetChuckNorrisJokes().then((c) => {
+      return c;
+    });
+    arrayOfSentences.push(chuck_norris);
 
-let excuse = await GetExcuse().then((c) => { return c; });
-arrayOfSentences.push(excuse);
+    let excuse = await GetExcuse().then((c) => {
+      return c;
+    });
+    arrayOfSentences.push(excuse);
 
-let useless_facts = await GetUselessFact().then((f) => { return f; });
-arrayOfSentences.push(useless_facts);
+    let useless_facts = await GetUselessFact().then((f) => {
+      return f;
+    });
+    arrayOfSentences.push(useless_facts);
 
-let yo_momma = await GetYoMommaJoke().then((m) => { return m; }); 
-arrayOfSentences.push(yo_momma); //
+    let yo_momma = await GetYoMommaJoke().then((m) => {
+      return m;
+    });
+    arrayOfSentences.push(yo_momma); //
 
-let advice = await GetAdvice().then((a) => { return a; });
-arrayOfSentences.push(advice);
+    let advice = await GetAdvice().then((a) => {
+      return a;
+    });
+    arrayOfSentences.push(advice);
 
-//Unavailable for the moment
-// let dad_jokes = await GetDadjoke().then((d) => { return d; });
-// arrayOfSentences.push(dad_jokes);
+    //Unavailable for the moment
+    // let dad_jokes = await GetDadjoke().then((d) => { return d; });
+    // arrayOfSentences.push(dad_jokes);
 
-  let randomTweet =
-    arrayOfSentences[Math.floor(Math.random() * arrayOfSentences.length)];
+    let randomTweet =
+      arrayOfSentences[Math.floor(Math.random() * arrayOfSentences.length)];
     let now = new Date();
-      await rwClient.v2.tweet(randomTweet + "\n-B \u{1F633}");
-    console.log(now.getHours()+ "h" + now.getMinutes() +": Just tweeted: " + randomTweet);
+    await rwClient.v2.tweet(randomTweet + "\n-B \u{1F633}");
+    console.log(
+      now.getHours() + "h" + now.getMinutes() + ": Just tweeted: " + randomTweet
+    );
 
-  //Send a tweet every 30 minutes
-  await timer(30 * MINUTE);
+    //Send a tweet every 30 minutes
+    await timer(30 * MINUTE);
+  } catch (error) {
+    await rwClient.v2.tweet("aie aie ça c'est mal passé cette fois\n-B \u{1F633}");
+    let now = new Date();
+    console.log(now.getHours() + "h" + now.getMinutes() + ": Aie aie ça c'est mal passé cette fois");
+  }
 }
